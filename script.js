@@ -13,11 +13,10 @@ function getComputerChoice(){
     }
 }
 
-function playRound(){
+let playRound = elem => {
 
     let computerChoice = getComputerChoice();
-    let playerChoice = prompt("Rock, Paper or Scissors?");
-    playerChoice = playerChoice.toLowerCase();
+    let playerChoice = elem;
 
     if (playerChoice == computerChoice){
         console.log("It's a tie!");
@@ -30,11 +29,13 @@ function playRound(){
             console.log("You Won! Paper beats Rock!");
             score++;
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
         if(computerChoice == "scissors"){
             console.log("You Lost! Scissors beats Paper!");
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
     }
@@ -43,12 +44,14 @@ function playRound(){
         if (computerChoice == "paper"){
             console.log("You Lost! Paper beats Rock!");
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
         if(computerChoice == "scissors"){
             console.log("You Won! Rock beats Scissors!");
             score++;
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
     }
@@ -57,33 +60,21 @@ function playRound(){
         if (computerChoice == "rock"){
             console.log("You Lost! Rock beats Scissors!");
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
         if(computerChoice == "paper"){
             console.log("You Won! Paper beats Scissors!");
             score++;
             console.log("Score: "+ score);
+            hi.textContent = score;
             return;
         }
     }
 }
+const hi = document.querySelector("#score");
+hi.textContent = score;
+const Game = document.querySelectorAll("button");
+Game.forEach(button => button.addEventListener("click", () => playRound(button.id)));
 
-function playGame(){
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
 
-    console.log("Final Score:" +  score + "/ 5");
-    if (score >= 3){
-        console.log("You Won the Game!");
-        return;
-    }
-    else{
-        console.log("You Lost the Game!");
-        return;
-    }
-}
-
-playGame();
